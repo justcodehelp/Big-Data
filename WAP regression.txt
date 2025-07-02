@@ -1,0 +1,23 @@
+> IQ<-rnorm(40,30,2)
+> IQ<-sort(IQ)
+> result<-c(0,0,0,1,0,0,0,0,0,1,
++ 1,0,0,0,1,1,0,0,1,0,
++ 0,0,1,0,0,1,1,0,1,1,
++ 1,1,1,0,1,1,1,1,0,1)
+
+> fd<-as.data.frame(cbind(IQ,result))
+> df<-as.data.frame(cbind(IQ,result))
+> print(df)
+
+> png(file="LogisticRegression.png")
+> plot(IQ,result,xlab="IQ Level",
++ ylab="Probability of passing")
+
+> g=glm(result~IQ,family=binomial,df)
+
+> curve(predict(g,data.frame(IQ=x),type="resp"),add=TRUE)
+> points(IQ,fiited(g),pch=30)
+> points(IQ,fitted(g),pch=30)
+
+> summary(g)
+>dev.off()
