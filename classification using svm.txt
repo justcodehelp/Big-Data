@@ -1,0 +1,45 @@
+1		getwd()
+2		read.csv()
+3		ds=read.csv("dataset.csv",TRUE,",")
+4		ds
+
+> ds=ds[3:5]
+>ds[3:5]
+>ds
+
+>install.packages("caTools")
+
+#Splitting dataset
+>library(caTools)
+>set.seed(123)
+>split=sample.split(ds$Purchased,SplitRatio=0.75)
+>training_set=subset(ds.split==TRUE)
+>test_set=subset(ds,split==FALSE)
+>ds
+
+#Feacture Scaling
+>test_set[-3]=scale(test_set[-3])
+>training_set[-3]=scale(training_set[-3])
+>test_set[-3]=scale(test_set[-3])
+>test_set[-3]
+
+#Fitting SVM to the training set
+>install.packages('e1071')
+>library(e1071)
+>classifier=svm(formula=Purchased~.,
++		data=training_set,
++		type='C-classification',
++		kernal='linear')
+>classifier
+
+#Predicting the test set result
+>y_pred=predict(classifier,newdata=test_set[-3])
+>y_pred
+
+>cm=table(test_set[,3],y_pred)
+>cm
+
+#Visualizing
+>set=training_set
+>x1=seq(min(set[,1])-1,max(set[,1])+1,by=0.01)
+>x2=seq(min(set[,2])-1,max(set[,2])+1,by=0.01)
