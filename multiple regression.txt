@@ -1,0 +1,15 @@
+>install.packages("tidyverse")
+>library(tidyverse)
+>install.packages("datarium")
+
+>data("marketing",package="datarium")
+>head(marketing,4)
+
+>model<-lm(sales~youtube+facebook+newspaper,data=marketing)
+>summary(model)
+>summary(model)$coefficients
+
+>model<-lm(sales~youtube+facebook,data=marketing)
+>summary(model)
+
+>confint(model)
